@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         tv_totalgrade!!.text = "Total Grade: " + numxgrades
         tv_totalaverage!!.text = "GWA: " + numtotalave
         tv_totalclicks!!.text = "Total Inputed Grade: " + clickcounter
-        disablewhendone()
+//        disablewhendone()
     }
 
 

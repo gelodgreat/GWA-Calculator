@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#818b87"
+    tools:context="com.angelo.gwacalculator.StartMenu">
+
+    <ImageView
+        android:id="@+id/img_pslogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ps_logo"
+        android:layout_marginTop="20sp"/>
+
+    <Button
+        android:id="@+id/btn_gocalculate"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:text="Calculate your GWA Now!"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/img_pslogo"/>
+
+</RelativeLayout>
