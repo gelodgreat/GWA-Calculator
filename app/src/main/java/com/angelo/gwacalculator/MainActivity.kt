@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         init()
         onclickbuttons()
-        3
+
     }
 
     private fun onclickbuttons() {
