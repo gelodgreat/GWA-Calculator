@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GWA Calculator Philippines Ed.</string>
+    <string name="ad_app_id">ca-app-pub-1707899762861819~7680937889</string>
+    <string name="intersitial1">ca-app-pub-1707899762861819/</string>
+    <string name="banner1">ca-app-pub-1707899762861819/8738868689</string>
+    <string name="banner2">ca-app-pub-1707899762861819/1215601881</string>
 </resources>

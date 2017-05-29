@@ -1,11 +1,16 @@
 package com.angelo.gwacalculator
 
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.InterstitialAd
 import java.lang.Exception
 import java.text.DecimalFormat
 
@@ -31,6 +36,9 @@ class MainActivity : AppCompatActivity() {
     private var tv_totalgrade: TextView? = null
     private var tv_totalaverage: TextView? = null
     private var tv_totalclicks: TextView? = null
+    private var interstitial: InterstitialAd? = null
+    var mAdView: AdView? = null
+    val adRequest = AdRequest.Builder().build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +46,27 @@ class MainActivity : AppCompatActivity() {
 
         init()
         onclickbuttons()
+        loadmyfuckingads()
 
+        mAdView = findViewById(R.id.adView) as AdView
+        mAdView!!.loadAd(adRequest)
+
+    }
+
+    private fun loadmyfuckingads() {
+        //         Prepare the Interstitial Ad
+        interstitial = InterstitialAd(this)
+        //         Insert the Ad Unit ID
+        interstitial!!.setAdUnitId("ca-app-pub-1707899762861819/9157671081")
+
+        interstitial!!.loadAd(adRequest)
+        //         Prepare an Interstitial Ad Listener
+        interstitial!!.setAdListener(object : AdListener() {
+            override fun onAdLoaded() {
+                // Call displayInterstitial() function
+                displayInterstitial()
+            }
+        })
     }
 
     private fun onclickbuttons() {
@@ -51,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
         btn_clear!!.setOnClickListener { clearfunctionchangetotalsubj() }
 
-        et_total_subj!!.setOnKeyListener { v, keyCode, event ->
+        et_total_subj!!.setOnKeyListener { _, _, _ ->
 
             if (et_total_subj!!.text.toString() == "") {
                 clearfunctionchangetotalsubj()
@@ -105,6 +133,8 @@ class MainActivity : AppCompatActivity() {
         tv_totalgrade!!.text = "Total Grade: " + numxgrades
         tv_totalaverage!!.text = "GWA: " + numtotalave
         tv_totalclicks!!.text = "Total Inputed Grade: " + clickcounter
+
+
 //        disablewhendone()
     }
 
@@ -158,12 +188,31 @@ class MainActivity : AppCompatActivity() {
                 val ion = java.lang.Double.parseDouble(xresultgrades) / java.lang.Double.parseDouble(xresultunits)
                 xresultgrades = df.format(ion)
                 tv_totalaverage!!.text = "GWA: " + xresultgrades
+                showMessage("Your Calculated GWA", "GWA: " + xresultgrades + "\n\n"
+                        + "Ads will be played to help the developers. Thank you " + ("\ud83d\ude0d"))
+                loadmyfuckingads()
                 disablewhendone()
             }
         } catch (ex: Exception) {
             Toast.makeText(this, ex.toString(), Toast.LENGTH_SHORT).show()
         }
+    }
 
+    private fun displayInterstitial() {
+        // If Ads are loaded, show Interstitial else show nothing.
+        if (interstitial!!.isLoaded()) {
+            interstitial!!.show()
+        }
+    }
+
+    private fun showMessage(title: String, message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(true)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.show()
 
     }
+
+
 }
