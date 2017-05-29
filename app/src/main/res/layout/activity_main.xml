@@ -157,6 +157,13 @@
             android:text="TextView"
             android:textColor="#fff"
             android:textSize="20dp" />
+
+        <Spinner
+            android:id="@+id/spinner_units"
+            android:layout_width="match_parent"
+            android:layout_height="40sp">
+
+        </Spinner>
     </LinearLayout>
 
 

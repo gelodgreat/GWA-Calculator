@@ -3,10 +3,7 @@ package com.angelo.gwacalculator
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -39,7 +36,8 @@ class MainActivity : AppCompatActivity() {
     private var interstitial: InterstitialAd? = null
     var mAdView: AdView? = null
     val adRequest = AdRequest.Builder().build()
-
+    private var spinnerunits: Spinner? = null
+    private var array_spinner: ArrayList<Double>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -47,10 +45,39 @@ class MainActivity : AppCompatActivity() {
         init()
         onclickbuttons()
         loadmyfuckingads()
+        spinnerloader()
 
         mAdView = findViewById(R.id.adView) as AdView
         mAdView!!.loadAd(adRequest)
 
+    }
+
+    private fun init() {
+        numxunits = 0.0
+        numxgrades = 0.0
+        numtotalave = 0.0
+        clickcounter = 0
+
+        btn_next = findViewById(R.id.btn_next) as Button
+        btn_clear = findViewById(R.id.btn_clear) as Button
+
+        et_units = findViewById(R.id.et_units) as EditText
+        et_grade = findViewById(R.id.et_grade) as EditText
+        et_total_subj = findViewById(R.id.et_totalsubj) as EditText
+
+        tv_totalunits = findViewById(R.id.tv_totalunits) as TextView
+        tv_totalgrade = findViewById(R.id.tv_totalgrade) as TextView
+        tv_totalaverage = findViewById(R.id.tv_averagegrade) as TextView
+        tv_totalclicks = findViewById(R.id.tv_totalclicks) as TextView
+        spinnerunits = findViewById(R.id.spinner_units) as Spinner
+
+        tv_totalunits!!.text = "Total Units: " + numxunits
+        tv_totalgrade!!.text = "Total Grade: " + numxgrades
+        tv_totalaverage!!.text = "GWA: " + numtotalave
+        tv_totalclicks!!.text = "Total Inputed Grade: " + clickcounter
+
+
+//        disablewhendone()
     }
 
     private fun loadmyfuckingads() {
@@ -67,6 +94,19 @@ class MainActivity : AppCompatActivity() {
                 displayInterstitial()
             }
         })
+    }
+
+    private fun spinnerloader() {
+        array_spinner = ArrayList<Double>()
+        array_spinner!!.add(1.0)
+        array_spinner!!.add(2.0)
+        array_spinner!!.add(3.0)
+        array_spinner!!.add(4.0)
+        array_spinner!!.add(5.0)
+
+
+        val adapter = ArrayAdapter(this, R.layout.spinnerunitslayout, array_spinner)
+        spinnerunits!!.setAdapter(adapter)
     }
 
     private fun onclickbuttons() {
@@ -109,33 +149,6 @@ class MainActivity : AppCompatActivity() {
         tv_totalclicks!!.text = "Total Inputed Grade: " + clickcounter
         et_total_subj!!.requestFocus()
         disablewhendone()
-    }
-
-    private fun init() {
-        numxunits = 0.0
-        numxgrades = 0.0
-        numtotalave = 0.0
-        clickcounter = 0
-
-        btn_next = findViewById(R.id.btn_next) as Button
-        btn_clear = findViewById(R.id.btn_clear) as Button
-
-        et_units = findViewById(R.id.et_units) as EditText
-        et_grade = findViewById(R.id.et_grade) as EditText
-        et_total_subj = findViewById(R.id.et_totalsubj) as EditText
-
-        tv_totalunits = findViewById(R.id.tv_totalunits) as TextView
-        tv_totalgrade = findViewById(R.id.tv_totalgrade) as TextView
-        tv_totalaverage = findViewById(R.id.tv_averagegrade) as TextView
-        tv_totalclicks = findViewById(R.id.tv_totalclicks) as TextView
-
-        tv_totalunits!!.text = "Total Units: " + numxunits
-        tv_totalgrade!!.text = "Total Grade: " + numxgrades
-        tv_totalaverage!!.text = "GWA: " + numtotalave
-        tv_totalclicks!!.text = "Total Inputed Grade: " + clickcounter
-
-
-//        disablewhendone()
     }
 
 
