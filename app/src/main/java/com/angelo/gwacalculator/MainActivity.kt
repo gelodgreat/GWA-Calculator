@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     internal var clickrecorder: Int = 0
     private var btn_next: Button? = null
     private var btn_clear: Button? = null
-    private var et_units: EditText? = null
+    //    private var et_units: EditText? = null
     private var et_grade: EditText? = null
     private var et_total_subj: EditText? = null
     private var tv_totalunits: TextView? = null
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         btn_next = findViewById(R.id.btn_next) as Button
         btn_clear = findViewById(R.id.btn_clear) as Button
 
-        et_units = findViewById(R.id.et_units) as EditText
+//        et_units = findViewById(R.id.et_units) as EditText
         et_grade = findViewById(R.id.et_grade) as EditText
         et_total_subj = findViewById(R.id.et_totalsubj) as EditText
 
@@ -76,8 +76,6 @@ class MainActivity : AppCompatActivity() {
         tv_totalaverage!!.text = "GWA: " + numtotalave
         tv_totalclicks!!.text = "Total Inputed Grade: " + clickcounter
 
-
-//        disablewhendone()
     }
 
     private fun loadmyfuckingads() {
@@ -126,7 +124,6 @@ class MainActivity : AppCompatActivity() {
             } else if (et_total_subj!!.text.toString() != "") {
                 btn_next!!.setEnabled(true);
                 et_grade!!.setEnabled(true);
-                et_units!!.setEnabled(true);
             }
 
             false
@@ -141,7 +138,6 @@ class MainActivity : AppCompatActivity() {
         numtotalave = 0.0
         clickcounter = 0
         et_grade!!.setText("")
-        et_units!!.setText("")
         et_total_subj!!.setText("")
         tv_totalunits!!.text = "Total Units: " + numxunits
         tv_totalgrade!!.text = "Total Grade: " + numxgrades
@@ -155,29 +151,25 @@ class MainActivity : AppCompatActivity() {
     private fun calcuunits() {
         try {
 
-            if (et_units!!.text.toString() == "" || et_grade!!.text.toString() == "" || et_total_subj!!.text.toString() == "") {
+            if (et_grade!!.text.toString() == "" || et_total_subj!!.text.toString() == "") {
                 Toast.makeText(this, "Fill all fields!", Toast.LENGTH_SHORT).show()
             } else {
 
                 //Calculating Units
-                xunits = java.lang.Double.parseDouble(et_units!!.text.toString()) + numxunits
+                xunits = java.lang.Double.parseDouble(spinnerunits!!.selectedItem.toString()) + numxunits
                 numxunits = xunits
                 xresultunits = df.format(numxunits)
 
                 //Calculating GWA
-                multixgrade = java.lang.Double.parseDouble(et_grade!!.text.toString()) * java.lang.Double.parseDouble(et_units!!.text.toString())
+                multixgrade = java.lang.Double.parseDouble(et_grade!!.text.toString()) * java.lang.Double.parseDouble(spinnerunits!!.selectedItem.toString())
                 xgrades = multixgrade + numxgrades
                 numxgrades = xgrades
                 xresultgrades = df.format(xgrades)
 
-
                 tv_totalunits!!.text = "Total Units: " + xresultunits
                 tv_totalgrade!!.text = "Total Grade: " + xresultgrades
 
-
                 et_grade!!.setText("")
-                et_units!!.setText("")
-                et_units!!.requestFocus()
                 clickcounter = clickcounter + 1
             }
 
@@ -191,7 +183,6 @@ class MainActivity : AppCompatActivity() {
     private fun disablewhendone() {
         btn_next!!.setEnabled(false);
         et_grade!!.setEnabled(false);
-        et_units!!.setEnabled(false);
     }
 
     private fun total() {

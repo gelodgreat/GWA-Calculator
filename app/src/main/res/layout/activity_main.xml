@@ -34,26 +34,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-        <EditText
-            android:id="@+id/et_units"
+        <Spinner
+            android:id="@+id/spinner_units"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Units"
-            android:inputType="numberDecimal"
-            android:textColor="#fff"
-            android:textColorHint="#fff" />
+            android:layout_height="40sp"
+            android:layout_weight="1">
+
+        </Spinner>
 
         <EditText
             android:id="@+id/et_grade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
             android:gravity="center"
             android:hint="Grade"
             android:inputType="numberDecimal"
@@ -158,12 +154,6 @@
             android:textColor="#fff"
             android:textSize="20dp" />
 
-        <Spinner
-            android:id="@+id/spinner_units"
-            android:layout_width="match_parent"
-            android:layout_height="40sp">
-
-        </Spinner>
     </LinearLayout>
 
 
