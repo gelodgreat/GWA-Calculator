@@ -1,9 +1,9 @@
 package com.angelo.gwacalculator
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -37,14 +37,15 @@ class MainActivity : AppCompatActivity() {
     var mAdView: AdView? = null
     val adRequest = AdRequest.Builder().build()
     private var spinnerunits: Spinner? = null
-    private var array_spinner: ArrayList<Double>? = null
+    private var array_spinner: MutableList<Double>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         init()
         onclickbuttons()
-        loadmyfuckingads()
+//        loadmyfuckingads()
         spinnerloader()
 
         mAdView = findViewById(R.id.adView) as AdView
@@ -95,15 +96,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun spinnerloader() {
-        array_spinner = ArrayList<Double>()
-        array_spinner!!.add(1.0)
-        array_spinner!!.add(2.0)
-        array_spinner!!.add(3.0)
-        array_spinner!!.add(4.0)
-        array_spinner!!.add(5.0)
+        val mutableList: MutableList<Double> = ArrayList()
+        mutableList.add(1.0)
+        mutableList.add(2.0)
+        mutableList.add(3.0)
+        mutableList.add(4.0)
+        mutableList.add(5.0)
 
 
-        val adapter = ArrayAdapter(this, R.layout.spinnerunitslayout, array_spinner)
+        val adapter = ArrayAdapter(this, R.layout.spinnerunitslayout, mutableList)
         spinnerunits!!.setAdapter(adapter)
     }
 

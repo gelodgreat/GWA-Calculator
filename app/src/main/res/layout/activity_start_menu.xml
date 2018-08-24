@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/adView"
         android:layout_marginTop="10sp"
+        android:padding="10dp"
         android:orientation="vertical">
 
         <ImageView
@@ -41,7 +42,7 @@
         <Button
             android:id="@+id/btn_gocalculate"
             android:layout_width="match_parent"
-            android:layout_height="70sp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/img_pslogo"
             android:layout_marginTop="8dp"
             android:background="@color/colorPrimaryDark"
@@ -52,7 +53,7 @@
         <Button
             android:id="@+id/btn_exit"
             android:layout_width="match_parent"
-            android:layout_height="70sp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/img_pslogo"
             android:layout_marginTop="8dp"
             android:background="@color/colorPrimaryDark"
